@@ -11,7 +11,7 @@ public class Client{
 
 	private Client(String ip,int port){
 		Socket socket;
-		DataInputStream input;
+		DataInputStream input,input_server;
 		DataOutputStream output;
 
 		try{
@@ -21,16 +21,18 @@ public class Client{
 			input = new DataInputStream(System.in);
 			output = new DataOutputStream(socket.getOutputStream());
 
+			input_server = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
+
 			String line = "";
 			try{
-				while(!line.equals("Over"))
-				{
 					line = input.readLine();
 					output.writeUTF(line);
-				}
+				
 			}catch (Exception e1) {
 				e1.printStackTrace();
 			}
+
+			System.out.println("Website : " + line + "\n" +"IP : "  + input_server.readUTF());
 
 				socket.close();
 				input.close();
