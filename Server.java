@@ -15,19 +15,20 @@ public class Server{
 			System.out.println("Waitting for client.");
 			socket = server.accept();
 
-			String line = null;
-
+			String line = "";
 			input = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
+			while(!line.equals("Over")){
 			line = input.readUTF();
-
 			System.out.println("Client : " + line);
+	
+			}
 
-				try{
-					socket.close();
-					input.close();
-				}catch(Exception e){
-					e.printStackTrace();
-				}
+			try{
+				socket.close();
+				input.close();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 
 		}catch(Exception e){
 			e.printStackTrace();
@@ -36,6 +37,6 @@ public class Server{
 
 
 	public static void main(String args[]){
-		new Server(5001);
+		new Server(5022);
 	}
 }
