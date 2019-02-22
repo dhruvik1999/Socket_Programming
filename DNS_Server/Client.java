@@ -21,7 +21,7 @@ public class Client{
 			input = new DataInputStream(System.in);
 			output = new DataOutputStream(socket.getOutputStream());
 
-			input_server = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
+			input_server = new DataInputStream(socket.getInputStream());
 
 			String line = "";
 			try{
@@ -44,6 +44,6 @@ public class Client{
 	}
 
 	public static void main(String args[]){
-		new Client("127.0.0.1",5022);
+		new Client("127.0.0.1",5000);
 	}
 }
